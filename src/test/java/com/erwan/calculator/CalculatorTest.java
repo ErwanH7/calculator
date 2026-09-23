@@ -3,6 +3,7 @@ package com.erwan.calculator;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+import java.util.Set;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -48,5 +49,32 @@ class CalculatorTest {
 
         // THEN
         assertThat(quotient).isEqualTo(3);
+    }
+
+    @Test
+    void ensembleChiffres_devrait_retourner_les_chiffres_distincts_d_un_nombre_positif() {
+        // WHEN
+        Set<Integer> chiffres = Calculator.ensembleChiffres(7679);
+
+        // THEN
+        assertThat(chiffres).containsExactlyInAnyOrder(6, 7, 9);
+    }
+
+    @Test
+    void ensembleChiffres_devrait_ignorer_le_signe_d_un_nombre_negatif() {
+        // WHEN
+        Set<Integer> chiffres = Calculator.ensembleChiffres(-11);
+
+        // THEN
+        assertThat(chiffres).containsExactly(1);
+    }
+
+    @Test
+    void ensembleChiffres_devrait_retourner_0_pour_le_nombre_0() {
+        // WHEN
+        Set<Integer> chiffres = Calculator.ensembleChiffres(0);
+
+        // THEN
+        assertThat(chiffres).containsExactly(0);
     }
 }

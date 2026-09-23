@@ -1,4 +1,6 @@
 package com.erwan.calculator;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Calculatrice proposant quelques opérations de base sur les entiers.
@@ -29,5 +31,21 @@ public final class Calculator {
      */
     public static int divide(int opG, int opD) {
         return opG / opD;
+    }
+
+    /**
+     * Retourne l'ensemble des chiffres qui composent un nombre.
+     *
+     * @param pNombre le nombre à décomposer (le signe est ignoré)
+     * @return l'ensemble non ordonné des chiffres de pNombre
+     */
+    public static Set<Integer> ensembleChiffres(int pNombre) {
+        Set<Integer> chiffres = new HashSet<>();
+        long reste = Math.abs((long) pNombre);
+        do {
+            chiffres.add((int) (reste % 10));
+            reste = reste / 10;
+        } while (reste > 0);
+        return chiffres;
     }
 }
