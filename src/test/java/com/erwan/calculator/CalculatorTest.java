@@ -19,4 +19,18 @@ class CalculatorTest {
         // THEN
         assertThat(somme).isEqualTo(3);
     }
+
+    @Test
+    void divide_devrait_calculer_le_quotient_entier_de_deux_int() {
+        // GIVEN
+        Calculator calculator = new Calculator();
+        int opG = 7;
+        int opD = 2;
+
+        // WHEN
+        int quotient = calculator.divide(opG, opD);
+
+        // THEN
+        assertThat(quotient).isEqualTo(3);
+    }
 }
