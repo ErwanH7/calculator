@@ -1,15 +1,28 @@
 package com.erwan.calculator;
 
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 class CalculatorTest {
 
+    private Calculator calculator;
+
+    @BeforeEach
+    void setUp() {
+        calculator = new Calculator();
+    }
+
+    @AfterEach
+    void tearDown() {
+        calculator = null;
+    }
+
     @Test
     void add_devrait_calculer_la_somme_de_deux_int() {
         // GIVEN
-        Calculator calculator = new Calculator();
         int opG = 1;
         int opD = 2;
 
@@ -23,7 +36,6 @@ class CalculatorTest {
     @Test
     void divide_devrait_calculer_le_quotient_entier_de_deux_int() {
         // GIVEN
-        Calculator calculator = new Calculator();
         int opG = 7;
         int opD = 2;
 
