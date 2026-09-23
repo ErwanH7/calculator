@@ -6,6 +6,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 import java.util.Set;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class CalculatorTest {
 
@@ -76,5 +77,40 @@ class CalculatorTest {
 
         // THEN
         assertThat(chiffres).containsExactly(0);
+    }
+
+    @Test
+    void add_devrait_lever_une_exception_si_somme_hors_intervalle_des_int() {
+        // GIVEN
+        int opG = Integer.MAX_VALUE;
+        int opD = 1;
+
+        // WHEN / THEN
+        assertThatThrownBy(() -> Calculator.add(opG, opD))
+                .isInstanceOf(ArithmeticException.class);
+    }
+
+    @Test
+    void divide_devrait_lever_une_exception_quand_diviseur_est_0() {
+        // GIVEN
+        int opG = 5;
+        int opD = 0;
+
+        // WHEN / THEN
+        assertThatThrownBy(() -> Calculator.divide(opG, opD))
+                .isInstanceOf(ArithmeticException.class)
+                .hasMessage("Division par zéro impossible");
+    }
+
+    @Test
+    void divide_devrait_lever_une_exception_si_quotient_hors_intervalle_des_int() {
+        // GIVEN
+        int opG = Integer.MIN_VALUE;
+        int opD = -1;
+
+        // WHEN / THEN
+        assertThatThrownBy(() -> Calculator.divide(opG, opD))
+                .isInstanceOf(ArithmeticException.class)
+                .hasMessage("Le quotient dépasse la capacité d'un int");
     }
 }

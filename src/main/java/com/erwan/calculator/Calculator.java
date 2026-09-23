@@ -17,9 +17,10 @@ public final class Calculator {
      * @param opG opérande gauche
      * @param opD opérande droite
      * @return la somme opG + opD
+     * @throws ArithmeticException si la somme dépasse la capacité d'un int
      */
     public static int add(int opG, int opD) {
-        return opG + opD;
+        return Math.addExact(opG, opD);
     }
 
     /**
@@ -28,8 +29,15 @@ public final class Calculator {
      * @param opG dividende
      * @param opD diviseur
      * @return le quotient entier opG / opD
+     * @throws ArithmeticException si opD vaut 0, ou si le résultat dépasse la capacité d'un int
      */
     public static int divide(int opG, int opD) {
+        if (opD == 0) {
+            throw new ArithmeticException("Division par zéro impossible");
+        }
+        if (opG == Integer.MIN_VALUE && opD == -1) {
+            throw new ArithmeticException("Le quotient dépasse la capacité d'un int");
+        }
         return opG / opD;
     }
 
