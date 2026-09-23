@@ -1,24 +1,10 @@
 package com.erwan.calculator;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 class CalculatorTest {
-
-    private Calculator calculator;
-
-    @BeforeEach
-    void setUp() {
-        calculator = new Calculator();
-    }
-
-    @AfterEach
-    void tearDown() {
-        calculator = null;
-    }
 
     @Test
     void add_devrait_calculer_la_somme_de_deux_int() {
@@ -27,7 +13,7 @@ class CalculatorTest {
         int opD = 2;
 
         // WHEN
-        int somme = calculator.add(opG, opD);
+        int somme = Calculator.add(opG, opD);
 
         // THEN
         assertThat(somme).isEqualTo(3);
@@ -40,7 +26,7 @@ class CalculatorTest {
         int opD = 2;
 
         // WHEN
-        int quotient = calculator.divide(opG, opD);
+        int quotient = Calculator.divide(opG, opD);
 
         // THEN
         assertThat(quotient).isEqualTo(3);
